@@ -9,7 +9,7 @@ const {
 } = require("../controllers/product.controller");
 
 router.get("/", findAll);
-router.get("/:name", findOndByName);
+router.get("/:slug", findOndByName);
 
 router.post("/", save);
 router.put("/:id", update);

@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema({
+  slug:{
+    type: String,
+    require: true,
+  },
   nombre: {
     type: String,
     require: true,
@@ -18,6 +22,17 @@ const productSchema = mongoose.Schema({
   categoria: {
     type: String,
   },
+  numReviews:{
+    type: Number
+  },
+  rating:{
+    type: Number
+  },
+  countInStock:{
+    type: Number,
+    require:true
+  }
+
 });
 
 const product = mongoose.model("product", productSchema);
