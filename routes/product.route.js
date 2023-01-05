@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   findAll,
   findOndByName,
+  findOndByid,
   save,
   del,
   update,
@@ -10,6 +11,7 @@ const {
 
 router.get("/", findAll);
 router.get("/:slug", findOndByName);
+router.get("/id/:_id", findOndByid);
 
 router.post("/", save);
 router.put("/:id", update);

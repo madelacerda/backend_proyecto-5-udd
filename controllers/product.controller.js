@@ -28,6 +28,23 @@ const findOndByName = async (req, res) => {
   }
 };
 
+
+const findOndByid = async (req, res) => {
+  try {
+    const filter = {
+      _id: req.params._id,
+    };
+
+    const productos = await product.find(filter);
+    return res.json({ productos });
+  } catch (e) {
+    return res.json({
+      msg: "error",
+      details: e.message,
+    });
+  }
+};
+
 const update = async (req, res) => {
   let id = req.params.id;
   let {
@@ -102,6 +119,7 @@ const del = async (req, res) => {
 module.exports = {
   findAll,
   findOndByName,
+  findOndByid,
   save,
   del,
   update,
