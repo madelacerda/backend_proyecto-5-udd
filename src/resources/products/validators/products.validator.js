@@ -1,13 +1,10 @@
 import joi from 'joi'
 
 const createProductSchemaValidator = joi.object( {
-  slug: joi.string().max( 100 ).required(),
-  nombre: joi.string().max( 100 ).required(),
-  descripcion: joi.string().max( 300 ),
-  precio: joi.number().required(),
-  img: joi.string().required(),
-  countInStock: joi.number().required()
-
+  name: joi.string().max( 100 ).required(),
+  description: joi.string().max( 300 ),
+  price: joi.string().required(),
+  image: joi.string().required()
 } )
 
 const validateCreateProductBody = async ( body ) => {
