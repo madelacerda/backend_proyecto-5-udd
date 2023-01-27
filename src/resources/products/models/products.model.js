@@ -1,30 +1,39 @@
 import mongoose from 'mongoose'
 
-/* 
-Se define el esquema de mongoose, esta corresponde a la estructura de lo que sería un producto
-El id es generado automáticamente
-*/
+
 const productSchema = new mongoose.Schema( {
-  name: {
+  slug:{
     type: String,
-    required: true,
+    require: true,
   },
-  description: {
+  nombre: {
     type: String,
-    required: false,
-    maxLength: 100,
-    minLength: 2
+    require: true,
   },
-  price: {
+  descripcion: {
     type: String,
-    required: false,
-    maxLength: 100,
   },
-  image: {
+  precio: {
+    type: Number,
+    require: true,
+  },
+  img: {
     type: String,
-    required: false,
+  },
+  categoria: {
+    type: String,
+  },
+  numReviews:{
+    type: Number
+  },
+  rating:{
+    type: Number
+  },
+  countInStock:{
+    type: Number,
+    require:true
   }
+
 } )
 
-// Se crea la instancia del modelo.
 export const ProductModel = new mongoose.model( 'Product', productSchema )
