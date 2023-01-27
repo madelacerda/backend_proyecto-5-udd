@@ -1,37 +1,42 @@
-import bcrypt from "bcrypt";
-import mongoose from "mongoose";
+import bcrypt from 'bcrypt'
+import mongoose from 'mongoose'
 
-const SALT_WORK_FACTOR = 12;
-const userSchema = new mongoose.Schema({
-  usuario: {
+const SALT_WORK_FACTOR = 12
+const userSchema = new mongoose.Schema( {
+  name: {
     type: String,
-    require: true,
+    required: true
+  },
+  surname: {
+    type: String,
+    required: true
   },
   email: {
     type: String,
-    require: true,
+    required: true,
+    index: { unique: true }
   },
   password: {
     type: String,
-    require: true,
-  },
-});
-
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
-  try {
-    const salt = await bcrypt.genSalt(SALT_WORK_FACTOR);
-    this.password = await bcrypt.hash(this.password, salt);
-    return next();
-  } catch (err) {
-    return next(err);
+    required: true
   }
-});
+} )
 
-userSchema.methods.validatePassword = async function validatePassword(
-  password
-) {
-  return bcrypt.compare(password, this.password);
+userSchema.pre( 'save', async function(next ){
+  if ( !this.isModified( 'password' ) ) return next();
+  try {
+    const salt = await bcrypt.genSalt( SALT_WORK_FACTOR );
+    this.password = await bcrypt.hash( this.password, salt );
+    return next();
+
+  } catch ( err ) {
+    return next( err );
+  }
+} )
+
+userSchema.methods.validatePassword = async function validatePassword( password ) {
+  return bcrypt.compare( password, this.password );
 };
 
-export const UserModel = new mongoose.model("User", userSchema);
+
+export const UserModel = new mongoose.model( 'User', userSchema ) 
