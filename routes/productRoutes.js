@@ -28,7 +28,7 @@ productRouter.post(
       description: 'Descripcion',
     });
     const product = await newProduct.save();
-    res.send({ message: 'Product Created', product });
+    res.send({ message: 'Producto creado', product });
   })
 );
 
